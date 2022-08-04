@@ -16,6 +16,7 @@ type album struct {
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
+	router.GET("/", getDefault)
 
 	router.Run("localhost:8080")
 }
@@ -30,4 +31,8 @@ var albums = []album{
 // getAlbums responds with the list of all albums as JSON.
 func getAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
+}
+
+func getDefault(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, "Hello World!")
 }
